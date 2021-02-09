@@ -1,0 +1,174 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear cuestionario</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/estilos.css" />
+    <link rel="icon" type="image/png" href="./imagenes/cuestionario.png" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid h-100">
+      <!-- navbar -->
+      <div class="row pt-2 pb-2 encabezado shadow">
+        <img src="./imagenes/cuestionario.png" alt="" class="img-fluid ml-3" />
+      </div>
+      <!-- contenido -->
+      <div class="row bg-light">
+        <!-- opciones -->
+        <div class="col-12 col-sm-12 col-md-5 bg-light mt-3">
+          <div class="row ml-0">
+            <button
+              onclick="document.getElementById('inFile').click()"
+              id="importarArchivo"
+              class="btn btn-success"
+            >
+              Seleccionar archivo
+            </button>
+            <input
+              type="file"
+              id="inFile"
+              style="display: none"
+              accept=".pdf"
+            />
+          </div>
+          <div class="row mt-3 ml-0">
+            <button
+              class="btn btn-success"
+              data-toggle="modal"
+              data-target="#cuestionarioModal"
+              id="btnVerCuestionario"
+            >
+              Ver cuestionario
+            </button>
+          </div>
+          <label for="" value="hola"></label>
+        </div>
+        <!-- texto contenido -->
+        <div class="col-12 col-sm-12 col-md-6 bg-light mt-3 mx-auto">
+          <div class="row row-md-12 bg-primary m-0 p-0 shadow">
+            <div class="col col-md-12 encabezado">
+              <h3 class="text-white pt-1">Contenido</h3>
+            </div>
+            <div class="col-md-12 col-lg-12 p-0 bg-light">
+              <form action="" class="bg-white mb-1">
+                <div class="form-group mb-1">
+                  <textarea
+                    class="form-control overflow-auto mb-0"
+                    id="contenidoSeleccionado"
+                    rows="18"
+                    cols="150"
+                    placeholder="Contenido. . ."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-success mt-0"
+                  id="crearCuestionario"
+                >
+                  Crear cuestionario
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- ventana modal -->
+
+        <!-- Modal Libro -->
+        <div
+          class="modal fade"
+          id="modalLibro"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <label for="pagInicial" class="mx-1">Página inicial:</label>
+                <input type="number" name="" id="pagInicial" />
+
+                <label for="pagFinal" class="mx-1">Página final:</label>
+                <input type="number" name="" id="pagFinal" />
+
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  id="close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="visualizarLibro"></div>
+              <div class="modal-footer p-0">
+                <button class="btn btn-success" id="seleccionarPaginas">
+                  Seleccionar paginas
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal Cuestionario -->
+        <div
+          class="modal fade"
+          id="cuestionarioModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3>Cuestionario</h3>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  id="close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="cuestionario"></div>
+              <div class="modal-footer p-0">
+                <button class="btn btn-success" id="descargarCuestionario">
+                  Descargar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/acciones.js"></script>
+  </body>
+</html>

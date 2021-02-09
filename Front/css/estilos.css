@@ -1,0 +1,24 @@
+.encabezado {
+  background-color: #3f448c;
+}
+#book {
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  height: 80vh;
+}
+.pregunta {
+  border: 0;
+  width: 100%;
+}
+.pregunta:focus {
+  outline: none;
+}
+#cuestionario {
+  overflow-y: auto;
+  height: 70vh;
+}
+
+#contenidoSeleccionado {
+  text-align: justify;
+}

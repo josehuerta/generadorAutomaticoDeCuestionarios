@@ -1,0 +1,26 @@
+.encabezado {
+  background-color: #3f448c;
+  color: white;
+  height: 15vh;
+}
+.pasos {
+  height: 75vh;
+}
+.importar {
+  display: block;
+}
+
+@media only screen and (max-width: 768px) {
+  .encabezado {
+    height: 13vh;
+  }
+  .pasos {
+    height: 40vh;
+  }
+  .importar {
+    display: inline-block;
+  }
+  .flecha {
+    content: url("../imagenes/flecha-correcta.png");
+  }
+}
